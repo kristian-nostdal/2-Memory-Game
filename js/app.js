@@ -10,6 +10,7 @@ let symbols = [
 '043-apron.svg','043-apron.svg'];
 
 const cardsFlipped = ['', ''];
+const openCardSound = document.querySelector('.sound-open');
 let cardClicked1;
 let cardClicked2;
 
@@ -65,7 +66,11 @@ function flipCard (evt) {
   if(flipFinish){ /*wait until flipped cards are flipped back*/
     const cardClicked = evt.target.parentElement;
   if(cardClicked.classList.contains('card') && !cardClicked.classList.contains('card-flip')) {
+    
     cardClicked.classList.toggle('card-flip');
+    openCardSound.pause();
+    openCardSound.currentTime = 0;
+    openCardSound.play();
 
     /*Get the alt-text for the front-side's img/symbol*/
     const cardClickedSymbol = evt.target.nextElementSibling.firstElementChild.alt;
